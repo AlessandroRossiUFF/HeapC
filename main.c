@@ -154,12 +154,12 @@ int main(void) {
       printf("Digite o valor de x: ");
       int x;
       scanf("%d", &x);
-      InserirMin(minHeap, x);
+      Inserir(heap, x);
     }
     if(escolha==2)
-      RemoverMin(minHeap);
+      Remover(heap);
     if(escolha==3)
-      printHeap(minHeap, totalElementos);
+      printHeap(heap, totalElementos);
   }
   printf("\n\nFim");
   return 0;
