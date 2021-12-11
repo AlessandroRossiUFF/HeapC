@@ -5,7 +5,7 @@
 
 // -----------------------
 
-int heap[50], minHeap[50];
+int heap[50];
 int totalElementos=0;
 
 int indiceFilhoEsq(int x){
@@ -54,26 +54,6 @@ void Inserir (int *heap, int x){
   AjustarSubindo(heap, totalElementos-1);
 }
 
-void AjustarSubindoMin(int *heap, int pos){
-  if(pos!=-1){
-    int pai = indicePai(pos);
-    if(pai!=-1){
-      if(heap[pos]<heap[pai]){
-        int aux=heap[pos];
-        heap[pos]=heap[pai];
-        heap[pai]=aux;
-        AjustarSubindoMin(heap, pai);
-      }
-    }
-  }
-}
-
-void InserirMin (int *heap, int x){
-  heap[totalElementos]=x;
-  totalElementos++;
-  AjustarSubindoMin(heap, totalElementos-1);
-}
-
 // -----------------------------------------
 
 void AjustarDescendo(int *heap, int pos){
@@ -104,34 +84,6 @@ int Remover(int *heap){
   }
 }
 
-
-void AjustarDescendoMin(int *heap, int pos){
-  if(pos!=-1 && indiceFilhoEsq(pos)!=-1){
-    int indiceMaiorFilho=indiceFilhoEsq(pos);
-    if(indiceFilhoDir(pos)!=-1 && heap[indiceFilhoDir(pos)]<heap[indiceMaiorFilho])
-      indiceMaiorFilho=indiceFilhoDir(pos);
-
-    if(heap[indiceMaiorFilho]<heap[pos]){
-      int aux = heap[pos];
-      heap[pos] = heap[indiceMaiorFilho];
-      heap[indiceMaiorFilho]=aux;
-      AjustarDescendoMin(heap, pos);
-      
-    }
-  }
-}
-
-int RemoverMin(int *heap){
-  if(totalElementos==0)
-    return-1;
-  else{
-    int retorno=heap[0];
-    heap[0]=heap[totalElementos-1];
-    totalElementos--;
-    AjustarDescendoMin(heap, 0);
-    return retorno;
-  }
-}
 
 // --------------------------------
 
